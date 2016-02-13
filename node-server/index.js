@@ -41,7 +41,7 @@ var get_fwd_number = function(request, response) {
   });
   console.log(msg)
   req.write(msg);
-  req.end();
+  req.send();
 }
 
 var app = express();
