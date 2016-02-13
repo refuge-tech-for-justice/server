@@ -3,7 +3,7 @@
 // var bodyParser = require('body-parser');
 // var twilio = require('twilio');
 // var firebase = require('firebase');
-// var _ = require('lodash');
+var _ = require('lodash');
 // var config = require('../node-server/helpers/config');
 var command = require('./command.js');
 // var http = require('http');
