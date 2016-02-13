@@ -3,19 +3,37 @@ var bodyParser = require('body-parser');
 var twilio = require('twilio');
 var firebase = require('firebase');
 var _ = require('lodash');
+
 var config = require('./helpers/config');
-var command = require('./command.js');
+var handle_error = require('./helpers/error_handler');
+var utils = require('./helpers/utils');
 
-var sms = function(request, response) {
- console.log("IN: ", _.pick(request.body, ['From', 'Body']));
- command(request, response);
-};
-
+var urls = utils.urls;
+var http = require('http');
 
 var app = express();
-var port = 80;
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+
+var sms = function(request, response) {
+  var sender = request.body['From'];
+  var msg = request.body['Body'];
+  console.log(msg)
+}
 
 app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
-app.listen(port);
 
-console.log('Server started! At http://localhost:' + port);
+
+
+app.get('/', function(req, res) {
+  res.send('Hello World!');
+});
+
+var server = app.listen(80, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Refuge listening at http://%s:%s', host, port);
+});
