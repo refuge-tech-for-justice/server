@@ -25,7 +25,7 @@ var get_fwd_number = function(request, response) {
   var key = sender+msg
   var server = cons.getNode(key);
   var options = {
-    hostname: 'localhost',
+    hostname: '104.131.27.67',
     port: map_to_num[server],
     path: '/sms',
     method: 'POST',
