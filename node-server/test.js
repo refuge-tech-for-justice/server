@@ -9,7 +9,6 @@ var handle_error = require('./helpers/error_handler');
 var utils = require('./helpers/utils');
 
 var urls = utils.urls;
-var http = require('http');
 var msg = 'dummy msg'
 
 var options = {
@@ -31,22 +30,33 @@ console.log('reached here')
 // req.write(msg);
 // req.end();
 
-var req = http.request(options, (res) => {
-  console.log(`STATUS: ${res.statusCode}`);
-  console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-  res.setEncoding('utf8');
-  res.on('data', (chunk) => {
-    console.log(`BODY: ${chunk}`);
-  });
-  res.on('end', () => {
-    console.log('No more data in response.')
-  })
-});
+// var req = http.request(options, (res) => {
+//   console.log(`STATUS: ${res.statusCode}`);
+//   console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+//   res.setEncoding('utf8');
+//   res.on('data', (chunk) => {
+//     console.log(`BODY: ${chunk}`);
+//   });
+//   res.on('end', () => {
+//     console.log('No more data in response.')
+//   })
+// });
 
-req.on('error', (e) => {
-  console.log(`problem with request: ${e.message}`);
-});
+// req.on('error', (e) => {
+//   console.log(`problem with request: ${e.message}`);
+// });
 
-// write data to request body
-req.write(msg);
-req.end();
+// // write data to request body
+// req.write(msg);
+// req.end();
+
+var request = require('request');
+
+request({
+    url: "http://127.0.0.1:8071",
+    method: "POST",
+    json: true,  
+    body: {hi:'hey'}
+}, function (error, response, body){
+    
+});

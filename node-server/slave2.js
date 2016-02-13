@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var twilio = require('twilio');
 var firebase = require('firebase');
 var _ = require('lodash');
-var config = require('../node-server/helpers/config');
+var config = require('./helpers/config');
 var command = require('./command.js');
 
 var sms = function(request, response) {

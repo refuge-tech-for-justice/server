@@ -7,6 +7,7 @@ var _ = require('lodash');
 var config = require('../node-server/helpers/config');
 var command = require('./command.js');
 var http = require('http');
+var cors = require('cors');
 
 // Configure our HTTP server to respond with Hello World to all requests.
 var server = http.createServer(function (request, response) {
@@ -20,6 +21,7 @@ var sms = function(request, response) {
   command(request, response);
 };
 var app = express();
+app.use(cors);
 
 // Listen on port 8000, IP defaults to 127.0.0.1
 server.listen(8071);
