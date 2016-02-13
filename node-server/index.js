@@ -13,9 +13,10 @@ var urls = utils.urls;
 var ConsistentHashing = require('consistent-hashing');
 var cons = new ConsistentHashing(["server_1", "server_2", "server_3"]);
 var map_to_num = {};
-map_to_num["server_1"] = '+16313749574';
-map_to_num["server_2"] = '+16179016321';
-map_to_num["server_3"] = '+16313749574';
+map_to_num["server_1"] = '8071';
+map_to_num["server_2"] = '8071';
+map_to_num["server_3"] = '8071';
+
 
 var get_fwd_number = function(request, response) {
   var twiml = new twilio.TwimlResponse();
@@ -23,10 +24,25 @@ var get_fwd_number = function(request, response) {
   var msg = request.body['Body'];
   var key = sender+msg
   var server = cons.getNode(key);
-  console.log(map_to_num[server])
-  send_msg(map_to_num[server], msg)
-  response.send(twiml.message('HEY'));
+  var options = {
+    hostname: 'localhost',
+    port: map_to_num[server],
+    path: '/sms',
+    method: 'POST',
+    headers: {
+      'MessageLength': msg.length
+    }
+  };
+  var req = http.request(options, (res) => {
+  res.setEncoding('utf8');
+  });
+
+  req.write(msg);
+  req.end();
 }
+
+
+
 
 var send_msg = function(to, msg) {
   var client = twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
