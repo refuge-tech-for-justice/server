@@ -33,8 +33,11 @@ var get_fwd_number = function(request, response) {
       'MessageLength': msg.length
     }
   };
+  console.log('reached here')
   var req = http.request(options, (res) => {
-  res.setEncoding('utf8');
+    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+    res.setEncoding('utf8');
   });
 
   req.write(msg);
