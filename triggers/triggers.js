@@ -34,7 +34,7 @@ var ping = function(type, ref){
 
 food_ref.on('child_added', ping('food', food_ref));
 water_ref.on('child_added', ping('water', water_ref));
-shelter_ref.on('child_added', ping('shelter_ref', shelter_ref));
+shelter_ref.on('child_added', ping('shelter', shelter_ref));
 
 
 
