@@ -15,7 +15,7 @@ var cons = new ConsistentHashing(["server_1", "server_2", "server_3"]);
 var map_to_num = {};
 map_to_num["server_1"] = '+16313749574';
 map_to_num["server_2"] = '+16179016321';
-map_to_num["server_3"] = 'dummy_number';
+map_to_num["server_3"] = '+16313749574';
 
 var get_fwd_number = function(request, response) {
   var twiml = new twilio.TwimlResponse();
