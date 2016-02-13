@@ -18,7 +18,7 @@ var sms = function(request, response) {
 
 
 var app = express();
-var port = process.env.PORT || 8071;
+var port = 8073;
 
 app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
 app.listen(port);
