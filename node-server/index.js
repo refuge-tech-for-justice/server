@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({
 
 var sms = function(request, response) {
   var twiml = new twilio.TwimlResponse()
-  var sender = request.body['From'];
+  var sender = request.body['sender'];
   var msg = request.body['Body'];
   console.log("IN: ", _.pick(request.body, ['From', 'Body']));
   command(request, response);
