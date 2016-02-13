@@ -30,7 +30,6 @@ var command = function(request, response){
         store_request(urls.shelter, sender, get_area(sender));
     }
 
-    response.send(twiml.message('HEY')); 
 }
 
 // console.log(get_area("+3022218413489"));
