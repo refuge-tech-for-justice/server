@@ -13,7 +13,6 @@ var urls = utils.urls;
 var ConsistentHashing = require('consistent-hashing');
 var cons = new ConsistentHashing(["server_1", "server_2", "server_3"]);
 var map_to_num = {};
-var TWILIO_AUTH_TOKEN = 'dummy_auth'
 map_to_num["server_1"] = '+16313749574';
 map_to_num["server_2"] = '+16179016321';
 map_to_num["server_3"] = 'dummy_number';
@@ -67,4 +66,4 @@ var server = app.listen(80, function() {
 //   console.error('sudo node index.js');
 // });
 
-module.exports = sms;
+// module.exports = sms;
