@@ -32,8 +32,7 @@ var send_msg = function(to, msg, sender) {
   client.sendMessage({
     to: to,
     from: config.SENDING_NUMBER,
-    body: msg,
-    sender: sender
+    body: msg + "||"+sender
   }, function(err, responseData) {
     if (err) {
       console.log('Error sending: ', err);
