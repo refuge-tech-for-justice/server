@@ -39,7 +39,7 @@ var get_fwd_number = function(request, response) {
     console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
     res.setEncoding('utf8');
   });
-
+  console.log(msg)
   req.write(msg);
   req.end();
 }
