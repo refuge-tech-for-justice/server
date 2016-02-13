@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var twilio = require('twilio');
 var firebase = require('firebase');
 var _ = require('lodash');
-
+var command = require('./command.js')
 var config = require('./helpers/config');
 var handle_error = require('./helpers/error_handler');
 var utils = require('./helpers/utils');
@@ -18,9 +18,11 @@ app.use(bodyParser.urlencoded({
 
 
 var sms = function(request, response) {
+  var twiml = new twilio.TwimlResponse()
   var sender = request.body['From'];
   var msg = request.body['Body'];
-  console.log(msg)
+  console.log("IN: ", _.pick(request.body, ['From', 'Body']));
+  command(request, response);
 }
 
 app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
