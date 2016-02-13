@@ -13,9 +13,15 @@ var sms = function(request, response) {
 
 
 var app = express();
-var port = 8072;
-
 app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
 app.listen(port);
+var server = app.listen(80, function() {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Refuge listening at http://%s:%s', host, port);
+});
+
+
 
 console.log('Server started! At http://localhost:' + port);
