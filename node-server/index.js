@@ -25,36 +25,6 @@ var send_msg = function(to, msg) {
   });
 };
 
-
-var get_matches = function(app_value, number) {
-
-  var fetch_matches_as_array_and_string = function(app_value, number) {
-    //Given the number of a counselor, returns an array or string of pending matches. [ [6 char id, 'yes'|'no' ], ... ]
-    var matches = [];
-    var text = "";
-    if (number in app_value['notified']) {
-      var counter = 1;
-      for (var id in app_value['notified'][number]) {
-        var status = app_value['request_texts'][id]; //'yes' or 'no'
-        matches.push([id, status]);
-        text += "\n\n" + counter + ". ID: " + id + "\n" + status;
-        counter += 1;
-      }
-    }
-    return {
-      as_array: matches,
-      as_string: text,
-    };
-  };
-
-  //Given the number of a counselor, returns pending matches string.
-  var pending_matches = fetch_matches_as_array_and_string(app_value, number);
-  if (pending_matches.as_array.length > 0) {
-    return get_string('MATCHES') + pending_matches.as_string;
-  }
-  return get_string('NO_PENDING_MATCHES');
-};
-
 var app = express();
 app.use(bodyParser.urlencoded({
   extended: true
@@ -82,9 +52,10 @@ var server = app.listen(80, function() {
 
   console.log('Refuge listening at http://%s:%s', host, port);
 
-}).on('error', function(err) {
-  console.error('Cannot serve on port 80 without root privileges:');
-  console.error('sudo node index.js');
 });
+// .on('error', function(err) {
+//   console.error('Cannot serve on port 80 without root privileges:');
+//   console.error('sudo node index.js');
+// });
 
 module.exports = sms;
