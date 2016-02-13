@@ -14,9 +14,25 @@ var http = require('http');
 var ConsistentHashing = require('consistent-hashing');
 var cons = new ConsistentHashing(["server_1", "server_2", "server_3"]);
 var map_to_num = {};
-map_to_num["server_1"] = '8071';
-map_to_num["server_2"] = '8071';
-map_to_num["server_3"] = '8071';
+map_to_num["server_1"] = '+12179190876';
+map_to_num["server_2"] = '+12179190876';
+map_to_num["server_3"] = '+12179190876';
+
+var send_msg = function(to, msg) {
+  var client = twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
+  client.sendMessage({
+    to: to,
+    from: config.SENDING_NUMBER,
+    body: msg,
+  }, function(err, responseData) {
+    if (err) {
+      console.log('Error sending: ', err);
+    }
+    console.log(responseData.to);
+    console.log(responseData.body);
+  });
+};
+
 
 var get_fwd_number = function(request, response) {
   var twiml = new twilio.TwimlResponse();
@@ -24,35 +40,10 @@ var get_fwd_number = function(request, response) {
   var msg = request.body['Body'];
   var key = sender+msg
   var server = cons.getNode(key);
-  var options = {
-    hostname: '104.131.27.67',
-    port: map_to_num[server],
-    path: '/sms',
-    method: 'POST',
-    headers: {
-      'MessageLength': msg.length
-    }
-  };
-  console.log('reached here')
-  var req = http.request(options, (res) => {
-    console.log(`STATUS: ${res.statusCode}`);
-    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
-    res.setEncoding('utf8');
-  });
-  console.log(msg)
-  req.write(msg);
-  req.end();
+  send_msg(map_to_num[server], msg)
 }
 
 var app = express();
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), get_fwd_number);
 
 app.get('/', function(req, res) {
