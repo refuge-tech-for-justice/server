@@ -49,17 +49,7 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-var sms = function(request, response) {
-  console.log("IN: ", _.pick(request.body, ['From', 'Body']));
-  var twiml = new twilio.TwimlResponse();
-  var sender = request.body['From'];
-  var msg = request.body['Body'];
-
-  response.send(twiml.message('HEY')); 
-
-};
-
-app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
+app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), get_fwd_number);
 
 app.get('/', function(req, res) {
   res.send('Hello World!');
