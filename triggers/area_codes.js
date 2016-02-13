@@ -15,7 +15,6 @@ var area_codes={
   2236 : "Spercheiada, Makrakomi",
   2237 : "Karpenisi",
   2238 : "Stylida",
-  2239 : "not used",
   2241 : "Rhodes, Rhodes City",
   2242 : "Kos and Nisyros islands",
   2243 : "Kalymnos, Astypalaia",
@@ -251,7 +250,9 @@ var area_codes={
   2893 : "Pyrgos",
   2894 : "Agia Varvara",
   2895 : "Ano Viannos",
-  2897 : "Limenas Chersonisou"
+  2897 : "Limenas Chersonisou",
+
+  789  : "Fake Greek Place"
 };
 
 var get_area=function(number){

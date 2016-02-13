@@ -251,7 +251,8 @@ var area_codes={
   2893 : "Pyrgos",
   2894 : "Agia Varvara",
   2895 : "Ano Viannos",
-  2897 : "Limenas Chersonisou"
+  2897 : "Limenas Chersonisou",
+  789  : "Fake Greek Place"
 };
 
 var get_area=function(number){

@@ -6,7 +6,8 @@ var urls = {
     water : root + "water/",
     food : root + "food/",
     shelter : root + "shelter/",
-    volunteers : root + "volunteers/"
+    volunteers : root + "volunteers/",
+    data : root+"data/"
 };
 
 var utils = {
