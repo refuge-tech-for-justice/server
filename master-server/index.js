@@ -23,15 +23,15 @@ var get_fwd_number = function(request, response) {
   var msg = request.body['Body'];
   var key = sender+msg
   var server = cons.getNode(key);
-  send_msg(map_to_num[server], msg)
+  send_msg(map_to_num[server], sender, msg)
 }
 
 
-var send_msg = function(to, msg) {
+var send_msg = function(to, from, msg) {
   var client = twilio(config.TWILIO_ACCOUNT_SID, config.TWILIO_AUTH_TOKEN);
   client.sendMessage({
     to: to,
-    from: config.SENDING_NUMBER,
+    from: from,
     body: msg,
   }, function(err, responseData) {
     if (err) {
