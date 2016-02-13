@@ -19,11 +19,11 @@ var sms = function(request, response) {
   console.log("IN: ", _.pick(request.body, ['From', 'Body']));
   command(request, response);
 };
-
+var app = express();
 
 // Listen on port 8000, IP defaults to 127.0.0.1
 server.listen(8071);
-server.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
+app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
 
 // Put a friendly message on the terminal
 console.log("Server running at http://127.0.0.1:8000/");
