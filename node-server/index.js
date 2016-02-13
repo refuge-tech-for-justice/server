@@ -49,7 +49,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), get_fwd_number);
+// app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), get_fwd_number);
+var sms = require('./slave1');
+app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
+
 
 app.get('/', function(req, res) {
   res.send('Hello World!');
@@ -60,5 +63,5 @@ var server = app.listen(80, function() {
   var port = server.address().port;
 
   console.log('Refuge listening at http://%s:%s', host, port);
-
 });
+

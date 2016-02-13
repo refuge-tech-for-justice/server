@@ -7,7 +7,6 @@ var _ = require('lodash');
 var config = require('../node-server/helpers/config');
 var command = require('./command.js');
 var http = require('http');
-var cors = require('cors');
 
 // Configure our HTTP server to respond with Hello World to all requests.
 // var server = http.createServer(function (request, response) {
@@ -21,12 +20,22 @@ var sms = function(request, response) {
   command(request, response);
 };
 var app = express();
-app.use(cors);
+// app.use(cors);
 
 // Listen on port 8000, IP defaults to 127.0.0.1
 app.post('/sms', sms);
 
-app.listen(8071);
+var server = app.listen(8071);
+
+function enableCORSMiddleware (req,res,next) {
+     // You could use * instead of the url below to allow any origin, 
+     // but be careful, you're opening yourself up to all sorts of things!
+     res.setHeader('Access-Control-Allow-Origin',  "http://localhost:8888");
+     next()
+}
+server.use(enableCORSMiddleware);
 
 // Put a friendly message on the terminal
 console.log("Server running at http://127.0.0.1:8000/");
+
+module.exports=sms;
