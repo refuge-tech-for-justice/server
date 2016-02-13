@@ -19,10 +19,10 @@ app.use(bodyParser.urlencoded({
 
 var sms = function(request, response) {
   var twiml = new twilio.TwimlResponse()
-  var sender = request.body['sender'];
+  var sender = request.body['Sender'];
   var msg = request.body['Body'];
   console.log("IN: ", _.pick(request.body, ['From', 'Body']));
-  command(request, response);
+  command(request, response, sender);
 }
 
 app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
