@@ -12,6 +12,7 @@ var store_request = function(url, sender, loc){
 }
 
 var command = function(request, response){
+    var twiml = new twilio.TwimlResponse();
     var sender = request.body['From'];
     var msg = request.body['Body'];
 
@@ -24,7 +25,7 @@ var command = function(request, response){
     if(msg.match(/shelter/i)){
         store_request(urls.food, sender, "location");
     }
-    
+
     response.send(twiml.message('HEY')); 
 }
 
