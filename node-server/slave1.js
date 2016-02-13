@@ -25,7 +25,7 @@ app.use(cors);
 
 // Listen on port 8000, IP defaults to 127.0.0.1
 server.listen(8071);
-app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
+app.post('/sms', sms);
 
 // Put a friendly message on the terminal
 console.log("Server running at http://127.0.0.1:8000/");
