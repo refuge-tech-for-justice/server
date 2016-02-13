@@ -47,9 +47,9 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), get_fwd_number);
-var sms = require('./slave1');
-app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
+app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), get_fwd_number);
+// var sms = require('./slave1');
+// app.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
 
 app.get('/', function(req, res) {
   res.send('Hello World!');
