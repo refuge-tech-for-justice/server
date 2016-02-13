@@ -14,6 +14,13 @@ var server = http.createServer(function (request, response) {
   response.end("Hello World\n");
 });
 
+
+var sms = function(request, response) {
+  console.log("IN: ", _.pick(request.body, ['From', 'Body']));
+  command(request, response);
+};
+
+
 // Listen on port 8000, IP defaults to 127.0.0.1
 server.listen(8071);
 server.post('/sms', twilio.webhook(config.TWILIO_AUTH_TOKEN), sms);
