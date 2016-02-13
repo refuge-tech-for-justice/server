@@ -9,6 +9,7 @@ var handle_error = require('./helpers/error_handler');
 var utils = require('./helpers/utils');
 
 var urls = utils.urls;
+var http = require('http');
 
 var ConsistentHashing = require('consistent-hashing');
 var cons = new ConsistentHashing(["server_1", "server_2", "server_3"]);
