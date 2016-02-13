@@ -17,7 +17,7 @@ var command = function(request, response, sender){
     console.log("IN: ", _.pick(request.body, ['From', 'Body']));
 
     var twiml = new twilio.TwimlResponse();
-    // var sender = request.body['Sender'];
+    console.log(sender)
     var msg = request.body['Body'];
 
     if(msg.match(/FOOD/i)){
