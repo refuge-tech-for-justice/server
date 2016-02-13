@@ -5,7 +5,7 @@ var firebase = require('firebase');
 var _ = require('lodash');
 var app = express();
 var port = process.env.PORT || 8071;
-var config = require('./helpers/config');
+var config = require('../node-server/helpers/config');
 app.listen(port);
 console.log('Server started! At http://localhost:' + port);
 
