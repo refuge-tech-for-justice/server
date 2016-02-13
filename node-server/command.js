@@ -23,7 +23,7 @@ var command = function(request, response){
         store_request(urls.water, sender, "location");
     }
     if(msg.match(/shelter/i)){
-        store_request(urls.food, sender, "location");
+        store_request(urls.shelter, sender, "location");
     }
 
     response.send(twiml.message('HEY')); 
