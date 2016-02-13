@@ -15,8 +15,8 @@ var ConsistentHashing = require('consistent-hashing');
 var cons = new ConsistentHashing(["server_1", "server_2", "server_3"]);
 var map_to_num = {};
 map_to_num["server_1"] = '+12179190876';
-map_to_num["server_2"] = '+12179190876';
-map_to_num["server_3"] = '+12179190876';
+map_to_num["server_2"] = '+12243243357';
+map_to_num["server_3"] = '+18577284183';
 
 var get_fwd_number = function(request, response) {
   var sender = request.body['From'];
