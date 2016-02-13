@@ -29,4 +29,3 @@ app.post('/sms', sms);
 app.listen(8071);
 
 // Put a friendly message on the terminal
-console.log("Server running at http://127.0.0.1:8000/");

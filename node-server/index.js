@@ -18,6 +18,12 @@ map_to_num["server_1"] = '8071';
 map_to_num["server_2"] = '8071';
 map_to_num["server_3"] = '8071';
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var get_fwd_number = function(request, response) {
   var twiml = new twilio.TwimlResponse();
   var sender = request.body['From'];
